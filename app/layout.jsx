@@ -1,7 +1,8 @@
 import "@/assets/styles/globals.css";
+import Navbar from "@/components/Navbar";
 
 export const metadata = {
-  title: "RentSpace",
+  title: "Rent_Space",
   description:
     "RentSpace - Efficient Property Management and Tenant Solutions.",
   keywords: [
@@ -31,6 +32,7 @@ const MainLayout = ({ children }) => {
   return (
     <html>
       <body>
+        <Navbar/>
         <main>{children}</main>
       </body>
     </html>
