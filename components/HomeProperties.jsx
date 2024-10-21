@@ -1,9 +1,14 @@
-import properties from "@/properties.json";
+import Property from "@/models/Property";
 import PropertyCard from "./PropertyCard";
 import Link from "next/link";
+import connectToDb from "@/config/databaseconnect";
 
-const HomeProperties = () => {
-  const hotProperties = properties.slice(0, 3);
+const HomeProperties = async () => {
+  await connectToDb();
+  const hotProperties = await Property.find({})
+    .sort({ createdAt: -1 })
+    .limit(3)
+    .lean();
   return (
     <>
       <section className="px-4 py-6">
@@ -11,7 +16,7 @@ const HomeProperties = () => {
           <h2 className="text-3xl font-bold text-red-500 mb-6 text-center">
             Hot properties
           </h2>
-          {properties.length === 0 ? (
+          {Property.length === 0 ? (
             <h1>No Properties Found</h1>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
