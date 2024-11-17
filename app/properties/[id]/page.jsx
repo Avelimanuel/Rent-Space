@@ -1,6 +1,7 @@
 import Property from "@/models/Property";
 import connectToDb from "@/config/databaseconnect";
 import PropertyHeaderImage from "@/components/PropertyHeaderImage";
+import PropertyImages from "@/components/PropertyImages";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import PropertyInfo from "@/components/PropertyInfo";
@@ -29,6 +30,7 @@ const SinglePropertyPage = async ({ params }) => {
           </div>
         </div>
       </section>
+      <PropertyImages images={singleProperty.images}/>
     </>
   );
 };
