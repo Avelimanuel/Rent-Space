@@ -38,7 +38,7 @@ const authOptions = {
     //Sesssion callback function that modifies the session object
     async session({ session }) {
       //Get user from database
-      const user = await User.findOne({ email:session.user.email});
+      const user = await User.findOne({ email: session.user.email });
       //Assign the user id from the session
       session.user.id = user._id;
       //Return the session
