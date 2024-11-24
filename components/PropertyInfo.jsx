@@ -1,3 +1,4 @@
+"use client";
 import {
   FaBed,
   FaBath,
@@ -7,7 +8,15 @@ import {
   FaTimes,
   FaCheck,
 } from "react-icons/fa";
-const PropertyInfo = ({ property }) => {
+import { toast } from "react-toastify";
+import { useEffect } from "react";
+const PropertyInfo = ({ property, showToast }) => {
+  useEffect(() => {
+    if (showToast) {
+      toast.success("Property added successfully");
+    }
+  }, [showToast]);
+
   return (
     <>
       <section>
@@ -16,7 +25,7 @@ const PropertyInfo = ({ property }) => {
             <div className="text-gray-500 mb-4">{property.type}</div>
             <h1 className="text-3xl font-bold mb-4">{property.name}</h1>
             <div className="text-gray-500 mb-4 flex align-middle justify-center md:justify-start">
-              <FaMapMarker className="text-red-500 mt-1"/>
+              <FaMapMarker className="text-red-500 mt-1" />
               <p className="text-orange-700">
                 {property.location.city} {property.location.state}
               </p>
@@ -92,7 +101,7 @@ const PropertyInfo = ({ property }) => {
             <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 list-none">
               {property.amenities.map((amenity, index) => (
                 <li key={index}>
-                  <FaCheck className="inline-block text-green-600 mr-2"/>
+                  <FaCheck className="inline-block text-green-600 mr-2" />
                   {amenity}
                 </li>
               ))}
