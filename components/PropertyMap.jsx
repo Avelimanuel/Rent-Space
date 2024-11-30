@@ -46,7 +46,7 @@ const PropertyMapPage = ({ property }) => {
   }, [property]); // Re-run effect if property changes
 
   if (loading) {
-    return <Spinner />;
+    return <Spinner /> ,<h1>Loading map</h1>
   }
 
   if (geoCodeError) {

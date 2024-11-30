@@ -6,20 +6,31 @@ import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import PropertyInfo from "@/components/PropertyInfo";
 import { convertToSerializableObject } from "@/app/utils/convertToObject";
+import BookmarkButton from "@/components/BookmarkBtn";
+import ShareButtons from "@/components/Sharebuttons";
+import PropertyContactForm from "@/components/PropertyContactForm";
 
 const SinglePropertyPage = async ({ params }) => {
   await connectToDb();
   const singlePropertyDoc = await Property.findById(params.id).lean();
-  const singleProperty = convertToSerializableObject(singlePropertyDoc)
-  if(!singleProperty){
-    return <h1 className="text-center font-bold text-red-500 text-2xl">Property not found</h1>
+  const singleProperty = convertToSerializableObject(singlePropertyDoc);
+
+  if (!singleProperty) {
+    return (
+      <h1 className="text-center font-bold text-red-500 text-2xl">
+        Property not found
+      </h1>
+    );
   }
 
   return (
     <>
+      {/* Header Image */}
       <PropertyHeaderImage image={singleProperty.images[0]} />
+
+      {/* Back to Properties Link */}
       <section>
-        <div className="container m-auto py-6 px-6">
+        <div className="container mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <Link
             href="/properties"
             className="text-blue-500 hover:text-blue-600 flex items-center"
@@ -28,16 +39,29 @@ const SinglePropertyPage = async ({ params }) => {
           </Link>
         </div>
       </section>
+
+      {/* Main Section */}
       <section className="bg-blue-50">
-        <div className="container m-auto py-10 px-6">
-          <div className="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
-            <PropertyInfo property={singleProperty}/>
-            <aside className="space-y-4"></aside>
+        <div className="container mx-auto py-10 px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-80/20 gap-6">
+            {/* Property Information */}
+            <div>
+              <PropertyInfo property={singleProperty} />
+            </div>
           </div>
-          
         </div>
       </section>
-      <PropertyImages images={singleProperty.images}/>
+
+      {/* Property Images */}
+      <section className="py-6">
+        <PropertyImages images={singleProperty.images} />
+      </section>
+      {/* Aside Section */}
+      <aside className="flex flex-col  justify-center items-center gap-4 sm:gap-6">
+       
+        <ShareButtons property={singleProperty} />
+        <PropertyContactForm property={singleProperty} />
+      </aside>
     </>
   );
 };
