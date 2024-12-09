@@ -1,4 +1,5 @@
 import addProperty from "@/app/actions/addproperty";
+import SubmitPropertyButton from "./SubmitPropertBtn";
 
 const AddPropertyForm = () => {
   return (
@@ -24,6 +25,8 @@ const AddPropertyForm = () => {
             <option value="House">House</option>
             <option value="House">Mercedes</option>
             <option value="House">Audi</option>
+            <option value="House">Mazda</option>
+            <option value="House">Volkswagen</option>
             <option value="Cabin Or Cottage">Cabin or Cottage</option>
             <option value="Room">Room</option>
             <option value="Studio">Studio</option>
@@ -398,12 +401,7 @@ const AddPropertyForm = () => {
         </div>
 
         <div>
-          <button
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
-            type="submit"
-          >
-            Add Property
-          </button>
+          <SubmitPropertyButton/>
         </div>
       </form>
     </div>

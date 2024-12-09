@@ -6,8 +6,7 @@ import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
 import PropertyInfo from "@/components/PropertyInfo";
 import { convertToSerializableObject } from "@/app/utils/convertToObject";
-import BookmarkButton from "@/components/BookmarkBtn";
-import ShareButtons from "@/components/Sharebuttons";
+
 import PropertyContactForm from "@/components/PropertyContactForm";
 
 const SinglePropertyPage = async ({ params }) => {
@@ -58,8 +57,6 @@ const SinglePropertyPage = async ({ params }) => {
       </section>
       {/* Aside Section */}
       <aside className="flex flex-col  justify-center items-center gap-4 sm:gap-6">
-       
-        <ShareButtons property={singleProperty} />
         <PropertyContactForm property={singleProperty} />
       </aside>
     </>

@@ -5,7 +5,6 @@ import Property from "@/models/Property";
 import { getSessionUser } from "../utils/getsessionUser";
 import { revalidatePath } from "next/cache";
 
-
 async function deleteProperty(propertyId) {
   await connectToDb();
   const sessionUser = await getSessionUser();
@@ -15,10 +14,10 @@ async function deleteProperty(propertyId) {
   }
 
   const { userId } = sessionUser;
-  
+
   console.log("User ID:", userId);
 
-  const property = await Property.findById(propertyId).populate("owner");;
+  const property = await Property.findById(propertyId).populate("owner");
   console.log("Property Owner:", property.owner.toString());
 
   if (!property) {

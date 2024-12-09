@@ -3,7 +3,7 @@ import connectToDb from "@/config/databaseconnect";
 import Message from "@/models/Message";
 import { getSessionUser } from "../utils/getsessionUser";
 
-async function sendMessage(formData) {
+async function sendMessage(previousState,formData) {
   await connectToDb();
   const sessionUser = await getSessionUser();
 
